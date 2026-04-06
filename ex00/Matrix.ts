@@ -33,11 +33,11 @@ export class Matrix<T=number>{
     }
 
     printv( a : Matrix<T> ) : void{
-        console.log(JSON.stringify(a.data?.map((er) => er)) , null , 2);
+        console.log(a.data?.map(row => `[${row.join(', ')}]`).join('\n'));  
     }
     add(v : Matrix<T>) : Matrix<T>{
           let datab: number[][];
-        datab = this.data
+        datab = this.data.map((row) => [...row]);
         this.equal_matrix_size(v);
         for(let x = 0 ; x < this.rows ; x++){
              for(let y = 0 ; y < this.colums ; y++)
@@ -48,7 +48,7 @@ export class Matrix<T=number>{
     }
     sub(v : Matrix<T>) :  Matrix<T>{
         let datab: number[][];
-        datab = this.data
+        datab = this.data.map((row) => [...row]);
         this.equal_matrix_size(v);
           for(let x = 0 ; x < this.rows ; x++){
              for(let y = 0 ; y < this.colums ; y++)
@@ -59,7 +59,7 @@ export class Matrix<T=number>{
     }
     scl(scalar :number) :  Matrix<T>{
          let datab: number[][];
-        datab = this.data
+        datab = this.data.map((row) => [...row]);
        for(let x = 0 ; x < this.rows ; x++){
              for(let y = 0 ; y < this.colums ; y++)
                      datab[x][y]    *=  scalar;
