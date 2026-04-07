@@ -12,9 +12,9 @@ type MatrixSize = {
 };
 
 export class Matrix<T=number>{
-    public readonly data : number[][];
-    public readonly rows: number;
-    public readonly colums: number;
+    data : number[][];
+      rows: number;
+     colums: number;
 
 
     constructor( data : number[][]){
@@ -32,8 +32,8 @@ export class Matrix<T=number>{
             throw new Error("undefined size mismatch");
     }
 
-    printv( a : Matrix<T> ) : void{
-        console.log(a.data?.map(row => `[${row.join(', ')}]`).join('\n'));  
+    printv() : void{
+        console.log(this.data?.map(row => `[${row.join(', ')}]`).join('\n'));  
     }
     add(v : Matrix<T>) : Matrix<T>{
           let datab: number[][];
