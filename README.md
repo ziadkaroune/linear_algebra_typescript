@@ -18,3 +18,15 @@ $$\text{result} = c_1v_1 + c_2v_2 + ... + c_nv_n$$
 - **Validation**: Ensures the number of vectors matches the number of scalars, throws an error on size mismatch
 
 Essential for solving systems of linear equations and understanding vector spaces.
+
+## Exercise 2: Linear Interpolation
+
+Implements linear interpolation (lerp) between two values, vectors, or matrices.
+
+Linear interpolation finds an intermediate value between two endpoints using a parameter $t$:
+$$\text{result} = u + t(v - u), \quad 0 \leq t \leq 1$$
+
+- **lerp**: Generic function supporting numbers and objects (Vector, Matrix), interpolates smoothly between two values
+- **Parameter validation**: Ensures $t$ is in the range [0, 1], throws error on type mismatch
+
+Used extensively in computer graphics, animations, audio processing (gain transitions), and any smooth transitions between states.
