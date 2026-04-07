@@ -1,11 +1,10 @@
 import { Vector } from "../class/Vector.ts";
 import {Matrix} from "../class/Matrix.ts" 
+
+
  function main(){
-
- 
-
+    
     //// test Matrix
-
     try{
             let u = new Matrix([[4.3 , 2 ],[3 , 4]]);
             let v = new Matrix([[2 , 4] , [4.4 ,8]]);
