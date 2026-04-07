@@ -30,3 +30,15 @@ $$\text{result} = u + t(v - u), \quad 0 \leq t \leq 1$$
 - **Parameter validation**: Ensures $t$ is in the range [0, 1], throws error on type mismatch
 
 Used extensively in computer graphics, animations, audio processing (gain transitions), and any smooth transitions between states.
+
+## Exercise 3: Dot Product
+
+Implements the dot product operation on vectors.
+
+The dot product of two vectors produces a scalar value:
+$$\mathbf{a} \cdot \mathbf{b} = a_1b_1 + a_2b_2 + ... + a_nb_n$$
+
+- **dot**: Computes the dot product between two vectors of the same dimension
+- **Result**: Returns a scalar value indicating the magnitude of projection and angle relationship
+
+Essential for computing vector magnitudes, measuring orthogonality, projecting vectors, and determining angles between vectors.
