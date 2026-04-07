@@ -17,7 +17,7 @@ export class Vector<k=number> {
     }
 
     printv() : void{
-         console.log(this.data);   // change this later
+       console.log(this.data?.map(row => `[${row}]`).join('\n')); 
     }
 
     add(v : Vector<k>) : Vector<k>{
