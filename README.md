@@ -80,4 +80,4 @@ $$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \math
 - **Dimension validation**: Only defined for 3D vectors (R³), throws error otherwise
 - **Applications**: Computing surface normals, determining orientation, calculating torque in physics, 3D graphics
 
-Essential for 3D geometry, physics simulations, and computer graphics applications.
+Essential for 3D geometry, physics simulations, and computer graphics applications. 
