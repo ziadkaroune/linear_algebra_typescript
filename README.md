@@ -56,3 +56,28 @@ Three common vector norms:
 - **Applications**: Measuring vector magnitude, convergence criteria, optimization, regularization in machine learning
 
 Essential for understanding vector spaces, measuring distances, and optimization problems.
+
+## Exercise 5: Angle Between Vectors
+
+Computes the cosine of the angle between two vectors.
+
+The angle between two vectors can be found using their dot product and norms:
+$$\cos(\theta) = \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \cdot \|\mathbf{v}\|_2}$$
+
+- **angle_cos**: Returns the cosine of the angle between two vectors
+- **Validation**: Ensures neither vector is a zero vector (denominator cannot be 0)
+
+Used to determine orthogonality, parallelism, and angular relationships between vectors in geometry and physics.
+
+## Exercise 6: Cross Product
+
+Implements the cross product operation for 3D vectors.
+
+The cross product produces a vector perpendicular to both input vectors:
+$$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \mathbf{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix}$$
+
+- **cross_product**: Computes the cross product of two 3D vectors, returning a perpendicular vector
+- **Dimension validation**: Only defined for 3D vectors (R³), throws error otherwise
+- **Applications**: Computing surface normals, determining orientation, calculating torque in physics, 3D graphics
+
+Essential for 3D geometry, physics simulations, and computer graphics applications.
