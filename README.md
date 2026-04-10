@@ -107,4 +107,19 @@ $$\text{trace}(\mathbf{A}) = \sum_{i=1}^{n} a_{ii}$$
 - **Square matrix validation**: Only defined for square matrices (n × n), throws error otherwise
 - **Result**: Returns a scalar value representing the trace
 
-Essential for computing matrix invariants, eigenvalue analysis, understanding matrix properties, and applications in optimization and machine learning. The trace is related to the determinant and eigenvalues of a matrix. 
+Essential for computing matrix invariants, eigenvalue analysis, understanding matrix properties, and applications in optimization and machine learning. The trace is related to the determinant and eigenvalues of a matrix.
+
+## Exercise 9: Matrix Transpose
+
+Implements the transpose operation for matrices.
+
+The transpose of a matrix is obtained by swapping rows and columns:
+$$\mathbf{A}^T_{ij} = \mathbf{A}_{ji}$$
+
+An m × n matrix becomes an n × m matrix where each element at position (i, j) moves to position (j, i).
+
+- **transpose**: Flips the matrix along its diagonal, converting rows to columns and columns to rows
+- **Dimension change**: A matrix of size (m × n) becomes (n × m) after transposition
+- **Result**: Returns a new transposed matrix
+
+Essential for linear algebra operations, solving systems of equations, matrix decompositions, data transformations, and symmetric matrix analysis. The transpose is fundamental in representing dual spaces and adjoint operations. 
