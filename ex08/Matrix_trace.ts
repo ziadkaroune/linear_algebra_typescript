@@ -1,0 +1,23 @@
+
+
+import {Matrix} from '../class/Matrix.ts'
+
+(()=>{
+    try{
+            var a = new Matrix(
+                                [[3., -5. , 9],
+                                 [6., 8. , 2],
+                                 [6., 8. , 2]]
+                            );
+
+            var b = new Matrix([[ 2, 1],
+                                [ 4, 2]]);
+
+            console.log(a.trace());
+     
+    }
+    catch(err){
+        if(err instanceof Error)
+                console.error(err.message);
+    }
+})();
