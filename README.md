@@ -80,4 +80,18 @@ $$\mathbf{u} \times \mathbf{v} = \begin{vmatrix} \mathbf{i} & \mathbf{j} & \math
 - **Dimension validation**: Only defined for 3D vectors (R³), throws error otherwise
 - **Applications**: Computing surface normals, determining orientation, calculating torque in physics, 3D graphics
 
-Essential for 3D geometry, physics simulations, and computer graphics applications. 
+Essential for 3D geometry, physics simulations, and computer graphics applications.
+
+## Exercise 7: Matrix Multiplication
+
+Implements matrix-to-vector and matrix-to-matrix multiplication operations.
+
+Matrix multiplication combines two matrices or a matrix and vector to produce a result:
+- **Matrix-Vector multiplication**: $\mathbf{C} = \mathbf{A} \times \mathbf{v}$ where $A \in \mathbb{R}^{m \times n}$ and $\mathbf{v} \in \mathbb{R}^n$ produces $\mathbf{C} \in \mathbb{R}^m$
+- **Matrix-Matrix multiplication**: $\mathbf{C} = \mathbf{A} \times \mathbf{B}$ where $A \in \mathbb{R}^{m \times n}$ and $B \in \mathbb{R}^{n \times p}$ produces $C \in \mathbb{R}^{m \times p}$
+
+- **mul_vec**: Multiplies a matrix by a vector, computing dot products of each row with the vector
+- **mul_mat**: Multiplies two matrices using the standard matrix multiplication algorithm
+- **Dimension validation**: Ensures inner dimensions match (matrix columns equal vector size or next matrix rows), throws error on mismatch
+
+Essential for linear transformations, solving systems of linear equations, computer graphics transformations, and scientific computing applications. 
