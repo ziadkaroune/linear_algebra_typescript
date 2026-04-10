@@ -94,4 +94,17 @@ Matrix multiplication combines two matrices or a matrix and vector to produce a 
 - **mul_mat**: Multiplies two matrices using the standard matrix multiplication algorithm
 - **Dimension validation**: Ensures inner dimensions match (matrix columns equal vector size or next matrix rows), throws error on mismatch
 
-Essential for linear transformations, solving systems of linear equations, computer graphics transformations, and scientific computing applications. 
+Essential for linear transformations, solving systems of linear equations, computer graphics transformations, and scientific computing applications.
+
+## Exercise 8: Matrix Trace
+
+Implements the trace operation for square matrices.
+
+The trace of a square matrix is the sum of its diagonal elements:
+$$\text{trace}(\mathbf{A}) = \sum_{i=1}^{n} a_{ii}$$
+
+- **trace**: Computes the sum of all diagonal elements (where row index equals column index)
+- **Square matrix validation**: Only defined for square matrices (n × n), throws error otherwise
+- **Result**: Returns a scalar value representing the trace
+
+Essential for computing matrix invariants, eigenvalue analysis, understanding matrix properties, and applications in optimization and machine learning. The trace is related to the determinant and eigenvalues of a matrix. 
