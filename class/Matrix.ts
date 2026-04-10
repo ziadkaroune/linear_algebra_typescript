@@ -137,4 +137,18 @@ export class Matrix<T=number>{
         return trace;
     }
 
+    transpose() : Matrix {
+
+        let transpose_arr : number[][] = Array.from(({length : this.rows}) , ()=>
+        new Array(this.columns).fill(0));
+
+        for(let x = 0 ; x < this.rows ; x++){
+                for(let y = 0 ; y < this.columns ;y++ ){
+                    transpose_arr[y][x] = this.data[x][y]; 
+                }
+        }
+        return new Matrix(transpose_arr);
+
+    }
+
 }
