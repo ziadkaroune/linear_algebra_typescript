@@ -119,4 +119,22 @@ export class Matrix<T=number>{
             }
             return new Matrix(matrixAb);
         }
+
+    trace() : number{
+        let trace : number = 0;
+            if(this.rows !== this.columns)
+                    throw new Error("Invalid , trace for matrix with n x n");
+
+             for(let x = 0 ; x < this.rows ; x++){
+                for(let y = 0 ; y < this.columns ;y++ ){
+                     if(y === x){
+                        trace += this.data[x][y];
+                        break;
+                     }
+                }
+            }
+            
+        return trace;
+    }
+
 }
