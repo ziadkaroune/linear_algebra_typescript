@@ -1,0 +1,30 @@
+{
+  "name": "matrix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test --import tsx/esm **/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziadkaroune/linear_algebra_typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ziadkaroune/linear_algebra_typescript/issues"
+  },
+  "homepage": "https://github.com/ziadkaroune/linear_algebra_typescript#readme",
+  "devDependencies": {
+    "@jest/globals": "^30.3.0",
+    "@types/node": "^25.6.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "jest": "^30.3.0"
+  }
+}
