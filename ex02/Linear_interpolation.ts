@@ -9,19 +9,16 @@ Audio Signal Processing
  //u + t * (v - u)
 
  
+export function lerp<V>(u: V , v : V , t : number)  : V {
 
-export function lerp<T>(U: T , V : T , t : number){
-
-
-    if(typeof(U) !== typeof(V))
+    if(typeof(u) !== typeof(v))
             throw new Error("type mismatch - failed operation");
-    if(t > 1 || t < 0)
+    if(t > 1 || t < 0) 
             throw new Error("Error t should be : 0 ≤ t ≤ 1");
 
-   else if(typeof(U) === "number" && typeof(V) === "number" )  
-            return  U + t * ( V - U ) ;
-    //Object Case (Vector or Matrix) -- add more condition tto prevent error
+    if(typeof(u) === "number" )  
+            return  ((u as number) + t * ((v as number) - (u as number))) as V ;
     else{
-        return (U as any).add((V as any).sub(U).scl(t)) ;
+        return (u as any).add((v as any).sub(u).scl(t)) ;
     }
 }
