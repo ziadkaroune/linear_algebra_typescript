@@ -19,9 +19,6 @@ export class Vector<k=number> {
     printv() : void{
        console.log(this.data?.map(row => `[${row}]`).join('\n')); 
     }
-    printnum(num :number) : void{
-        console.log(num);
-    }
 
     add(v : Vector<k>) : Vector<k>{
         this.equal_vec_size(v);
@@ -43,17 +40,13 @@ export class Vector<k=number> {
     }
     scl(scl :number) : Vector<k>{
         let datab: number[];
-        datab = this.data.map((val) => val);
-        for(let i = 0 ; i < this.size() ; i++)
-               datab[i]  *=  scl;
-
+        datab = this.data.map((val) => val * scl);
         return new Vector(datab);
     }
 
-    dot(v :Vector) : number{
+    dot(v :Vector<k>) : number{
         this.equal_vec_size(v);
         return this.data.reduce(( sum , val , i) => sum + val * v.data[i] , 0 );
-       
     }
     
     // Taxicab norm or Manhattan norm
@@ -62,7 +55,7 @@ export class Vector<k=number> {
     }
     //Euclidean norm
     norm_2() : number{
-         return this.data.reduce((sum , val) => Math.sqrt(sum + Math.pow(val , 2)),0);
+         return  Math.sqrt(this.data.reduce((sum , val) =>sum + Math.pow(val , 2),0));
     }
     // supremum norm
     norm_inf() : number{
@@ -70,5 +63,4 @@ export class Vector<k=number> {
     }
  
  
-
 }

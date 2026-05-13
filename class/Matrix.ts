@@ -1,21 +1,16 @@
-//matrix = [
-//  [a, b, c],  <-- row 0
-//  [d, e, f],  <-- row 1
-//
-//matrix.length   // 2 rows
-//matrix[0].length // 3 columns
-//
 
 import { Vector } from "./Vector.ts";
-import {determinant_n_two} from './ft_utils.ts'
-import {determinant_n_three} from './ft_utils.ts'
-import {determinant_n_four} from './ft_utils.ts'
 
+import {
+    determinant_n_two ,
+    determinant_n_three ,
+    determinant_n_four } from  '../utlils/determinant_utils.ts'
 
 type MatrixSize = {
     rows: number;
     columns: number;
 };
+
 
 export class Matrix<T=number> {
     data : number[][];
@@ -23,20 +18,23 @@ export class Matrix<T=number> {
     columns: number;
 
 
-    constructor( data : number[][]){
+    constructor( data : number[][]) {
         this.data = data.map((row) => [...row]);
-        this.rows = data.length;             // rows  -> vertical  -> dimension Y
+        this.rows = data.length;               // rows  -> vertical  -> dimension Y
         this.columns = this.data[0].length;   // columns -> horizontal -> dimension X
     }
-    size() : MatrixSize{
+
+    size() : MatrixSize {
         return {rows : this.rows , columns : this.columns}
     }
+
     equal_matrix_size(mat : Matrix<T>){
         let vec_size = mat.size();
         let _this_size = this.size();
         if(vec_size.rows != _this_size.rows || vec_size.columns != _this_size.columns)
             throw new Error("undefined size mismatch");
     }
+
     square_matrix(){
           if(this.columns !== this.rows)
                 throw new Error("matrix is not square -  undefined");
@@ -45,17 +43,19 @@ export class Matrix<T=number> {
     printv() : void{
         console.log(this.data?.map(row => `[${row.join(', ')}]`).join('\n'));  
     }
+
     add(mat : Matrix<T>) : Matrix<T>{
           let datab: number[][];
         datab = this.data.map((row) => [...row]);
         this.equal_matrix_size(mat);
+
         for(let x = 0 ; x < this.rows ; x++){
              for(let y = 0 ; y < this.columns ; y++)
                     datab[x][y]  +=  mat.data[x][y];
         }
         return new Matrix(datab);
-
     }
+
     sub(mat : Matrix<T>) :  Matrix<T>{
         let datab: number[][];
         datab = this.data.map((row) => [...row]);
@@ -65,8 +65,9 @@ export class Matrix<T=number> {
                     datab[x][y]  -=  mat.data[x][y];
         }
         return new Matrix(datab);
-
     }
+
+    
     scl(scalar :number) :  Matrix<T>{
          let datab: number[][];
         datab = this.data.map((row) => [...row]);
@@ -77,9 +78,7 @@ export class Matrix<T=number> {
           return new Matrix(datab);
     }
 
-
-    // Let A ∈ Rm×n, B ∈ Rn×p and u ∈ Rn where (m,n,p) ∈ N3 
-
+  
     mul_vec(v : Vector) : Vector {
         //A ∈ Rm×n, B ∈ Rn×p and u ∈ Rn   check vect size  is columns matrix
         if(v.size() !==  this.columns   )
@@ -91,44 +90,25 @@ export class Matrix<T=number> {
     }
 
 
-      
+    mul_mat(mat : Matrix) : Matrix {
 
-    mul_mat(mat : Matrix) : Matrix{
-
-              //A (2×3):          B (3×2):
-            //| 1  2  3 |       | 7  8  |
-            //| 4  5  6 |       | 9  10 |
-            //          //       | 11 12 |
-
-            //C[0][0] = (1×7) + (2×9)  + (3×11) = 7 + 18 + 33  = 58
-            //C[0][1] = (1×8) + (2×10) + (3×12) = 8 + 20 + 36  = 64
-            //C[1][0] = (4×7) + (5×9)  + (6×11) = 28 + 45 + 66 = 139
-            //C[1][1] = (4×8) + (5×10) + (6×12) = 32 + 50 + 72 = 154
-
-            //Result (2×2):
-            //| 58   64  |
-            //| 139  154 |
-        
         if(this.columns !== mat.rows)
                     throw new Error("Invalid matrix multiplication");
-        
-
-        //If A is (m × n) and B is (n × p), the result C is (m × p)
-        // size of the new matrix m x p   |  columns A x row B
-
+ 
         let matrixAb = Array.from(({length : this.columns}) , ()=> new Array(mat.rows).fill(0));
 
             for(let x = 0 ; x < this.rows ; x++){
                 for(let y = 0 ; y < mat.columns ;y++ ){
                     for(let k = 0 ; k < this.columns ; k++)
-                        matrixAb[x][y] += this.data[x][k] * mat.data[k][y];
-                    
+                             matrixAb[x][y] += this.data[x][k] * mat.data[k][y];
                 }
             }
             return new Matrix(matrixAb);
-        }
+    }
+
 
     trace() : number {
+
         let trace : number = 0;
             if(this.rows !== this.columns)
                     throw new Error("Invalid , trace for matrix with n x n");
@@ -141,26 +121,66 @@ export class Matrix<T=number> {
                      }
                 }
             }
+
         return trace;
     }
+
 
     transpose() : Matrix {
 
         let transpose_arr : number[][] = Array.from(({length : this.rows}) , ()=>
         new Array(this.columns).fill(0));
 
-        for(let x = 0 ; x < this.rows ; x++){
-                for(let y = 0 ; y < this.columns ;y++ ) {
-                    transpose_arr[y][x] = this.data[x][y]; 
-                }
+        for(let x = 0 ; x < this.rows ; x++) {
+                for(let y = 0 ; y < this.columns ;y++ )
+                        transpose_arr[y][x] = this.data[x][y];
         }
         return new Matrix(transpose_arr);
     }
 
-    row_echelon() : Matrix{
-        return new Matrix(new Array());
-    }
 
+    row_echelon() : Matrix{
+
+    let lead = 0;
+    let reow_elchon_matrix : number [][];
+    reow_elchon_matrix = this.data.map((row) => [...row])
+    for (let r = 0; r < this.rows; r++) {
+        if (lead >= this.columns) break;
+
+        let i = r;
+        // Trouver pivot
+        while (reow_elchon_matrix[i][lead] === 0) {
+            i++;
+            if (i === this.rows) {
+                i = r;
+                lead++;
+                if (lead === this.columns)  return new Matrix(reow_elchon_matrix);
+            }
+        }
+
+        // Swap
+        [reow_elchon_matrix[i], reow_elchon_matrix[r]] = [reow_elchon_matrix[r], reow_elchon_matrix[i]];
+
+        // Normaliser
+        let val = reow_elchon_matrix[r][lead];
+        for (let j = 0; j < this.columns; j++) {
+            reow_elchon_matrix[r][j] /= val;
+        }
+
+        // Éliminer les autres lignes
+        for (let i2 = 0; i2 < this.rows; i2++) {
+            if (i2 !== r) {
+                let factor = reow_elchon_matrix[i2][lead];
+                for (let j = 0; j < this.columns; j++) {
+                    reow_elchon_matrix[i2][j] -= factor * reow_elchon_matrix[r][j];
+                }
+            }
+        }
+
+        lead++;
+    }
+        return new Matrix(reow_elchon_matrix);
+    }
 
 
     determinant() : number{
@@ -172,31 +192,49 @@ export class Matrix<T=number> {
 
          if(dim === 2)
             determinant = determinant_n_two(this.data);
-
         else if (dim === 3) 
             determinant = determinant_n_three(this.data);
-            
         else if(dim === 4)
             determinant = determinant_n_four(this.data);
         else
             throw new Error("limited dimension for 4 demesions max -  undefined");
-      
         return determinant  ;
 
     }
 
-    inverse() : Matrix{
-        // Si det A = 0, alors A ne possède pas de matrice inverse ; 
-        // on dit alors que A est une matrice singulière. 
-        // Si det A ̸= 0, alors A est inversible et on dit que c’est une matrice régulière.
-
+    inverse() : number[][]{
+ 
         this.square_matrix(); // check if is it a square matrix
         if(this.determinant() === 0)
                 throw new Error("Error - The matrice is singular");
         else{
-
+                    //logic here
         }
-        return new Matrix(new Array);
+        return this.data;
+    }
+
+    rank() : number{
+  
+    // 1. On récupère la matrice sous forme échelonnée
+    const reducedMatrix = this.row_echelon();
+    let count = 0;
+
+    // 2. On compte les lignes qui ne sont pas totalement composées de zéros
+    for (let r = 0; r < reducedMatrix.rows; r++) {
+        let isRowZero = true;
+        for (let c = 0; c < reducedMatrix.columns; c++) {
+            // Utilisation d'une petite tolérance pour les nombres flottants
+            if (Math.abs(reducedMatrix.data[r][c]) > 1e-10) {
+                isRowZero = false;
+                break;
+            }
+        }
+        if (!isRowZero) {
+            count++;
+        }
+    }
+
+    return count;
     }
 
 }
