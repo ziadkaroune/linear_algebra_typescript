@@ -1,27 +1,23 @@
 
 import { Vector } from "../class/Vector.ts";
 
-
-export function linear_combination(vect : Vector[] , scalar :number[]){
+export function linear_combination(vect : Vector[] , coefs :number[]):Vector{
     
-    let vectresult = new Vector(new Array(vect.length).fill(0));
+    let vec_size = vect[0].size();
+    const vectresult =  new Array(vec_size).fill(0);
 
-    if(vect.length !== scalar.length)
-            throw new Error("undifined - size mismatch");
+    if(vect.length !== coefs.length)
+            throw new Error("undefined - size mismatch");
 
-    else{
-
-            for(var i = 0 ; i < vect.length ; i++){
-
-                for(var y = 0 ;  y < vect[i].data.length ; y++)
-                    vect[i].data[y] *= scalar[i];
-                
-            }
-
-            for(var i = 1 ; i < vect.length ; i++)
-                    vectresult.add(vect[i]);
-                
-            vectresult.printv();
+     for (let i = 1; i < vect.length; i++) {
+        if (vect[i].size() !== vec_size)
+            throw new Error("undefined - vectors dimensions mismatch");
     }
+
+    for(let  i = 0 ; i < vect.length  ;  i++){
+        for(let j = 0 ; j < vec_size ; j++)
+                 vectresult[j] +=  vect[i].data[j] * coefs[i];
+   }
+    return new Vector(vectresult);
 
 }
