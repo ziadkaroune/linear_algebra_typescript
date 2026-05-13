@@ -1,13 +1,14 @@
 import { Vector } from "../class/Vector.ts";
 
-function Dot_product(){
 
+//a⋅b=a1​b1​+a2​b2​+a3​b3
+(()=>{
 
     let a = new Vector([-1 , 6]);
     let b = new Vector([3 , 2]);
 
     const opa = a.dot(b);
-    opa.printv();
+    console.log(opa);
 
     ///////////////////////////////
 
@@ -15,8 +16,6 @@ function Dot_product(){
     let d = new Vector([1 , 1]);
 
     const opc = c.dot(d);
-    opc.printv();
+    console.log(opc);
          
-}
-
-Dot_product();
+})()
